@@ -1,0 +1,2 @@
+class HotspringsController < ApplicationController
+end

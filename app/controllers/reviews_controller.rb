@@ -29,17 +29,17 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def show
+    @review = Review.find(params[:id])
+  end
+
   private
-  #Use callbacks to share common setuo or constraints between actions.
-    def set_review
-      @review = Review.find(params[:id])
-    end
-    #Never trust parameters form the scary internet, only allow the white list through.
     def review_params
       params.permit(:rate, :image, :review)
     end
     def move_to_index
       redirect_to action: :index unless user_signed_in?
     end
+  end
 
 end

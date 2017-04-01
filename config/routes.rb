@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete 'reviews/:id' => 'reviews#destroy'
   patch 'reviews/:id' => 'reviews#update'
   get 'reviews/:id/edit' => 'reviews#edit'
-  
+  get 'reviews/:id' => 'reviews#show'
   resources :hotsprings
   root to: "hotsprings#index"
   devise_for :users

@@ -1,4 +1,5 @@
 <div class="cotents row">
+  <div class="container">
   <%= form_tag('/reviews', method: :post) do %>
     <h3>
       投稿する
@@ -8,4 +9,5 @@
     <textarea col="30" name="review" placeholder="どんな温泉でした？" rows="10"></textarea>
     <input type="submit" value="SENT">
   <% end %>
+  </div>
 </div>

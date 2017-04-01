@@ -1,22 +1,22 @@
 <div class ="contents row">
-  <div class="content_post" style="background-image: url(<%= @tweet.image %>);">
-    <% if user_signed_in? && current_user.id == @tweet.user_id %>
+  <div class="content_post" style="background-image: url(<%= @review.image %>);">
+    <% if user_signed_in? && current_user.id == @review.user_id %>
       <div class="more">
         <span><%= image_tag 'arrow_top.png' %></span>
       <ul class="more_list">
         <li>
-          <%= link_to '編集', "/tweets/#{@tweet.id}/edit", method: :get %>
+          <%= link_to '編集', "/reviews/#{@review.id}/edit", method: :get %>
         </li>
         <li>
-          <%= link_to '削除', "/tweets/#{@tweet.id}", method: :delete %>
+          <%= link_to '削除', "/reviews/#{@review.id}", method: :delete %>
         </li>
       </ul>
     </div>
     <% end %>
-    <%= simple_format(@tweet.text) %>
+    <%= simple_format(@review.review) %>
     <span class="name">
-      <a href="/users/<%= @tweet.user.id %>">
-        <span>投稿者</span><%= @tweet.user.nickname %>
+      <a href="/users/<%= @review.user.id %>">
+        <span>投稿者</span><%= @review.user.nickname %>
       </a>
     </span>
   </div>
@@ -31,7 +31,7 @@
     <div class="comments">
       <h4>＜コメント一覧＞</h4>
       <% if @comments %>
-        <% @comments.eanh do |comment| %>
+        <% @comments.each do |comment| %>
           <p>
             <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>:</strong>
             <%= comment.text %>

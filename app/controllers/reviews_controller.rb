@@ -16,6 +16,16 @@ class ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     review.destroy if review.user_id == current_user.id
+  end
+
+  def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    review = Review.find(params[:id])
+    if review.user_id == current_user.id
+      review.update(review_params)
     end
   end
 

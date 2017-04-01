@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post 'reviews' => 'reviews#create'
   get 'users/:id' => 'users#show'
   delete 'reviews/:id' => 'reviews#destroy'
+  patch 'reviews/:id' => 'reviews#update'
+  get 'reviews/:id/edit' => 'reviews#edit'
   
   resources :hotsprings
   root to: "hotsprings#index"

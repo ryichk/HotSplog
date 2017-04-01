@@ -1,7 +1,17 @@
 <div class="contents row" >
   <% @reviews.each do |review| %>
     <div class="content_post" style="background-image: url(<%= review.image %>);">
-      <%= simple_format(review.text) %>
+      <% if user_signed_in? && current_user.id == review.user_id %>
+        <div class="more">
+          <span><%= image_tag 'arrow_top.png' %></span>
+          <ul class="more_list">
+            <li>
+              <%= link_to '削除', "/reviews/#{review.id}", method: :delete %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+       <%= simple_format(review.text) %>
       <span class="name">
         <a href="">
           <span>投稿者</span><%= review.user.nickname %>

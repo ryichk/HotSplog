@@ -13,6 +13,12 @@ class ReviewsController < ApplicationController
     Review.create(rate: review_params[:rate], image: review_params[:image], review: review_params[:review], user_id: current_user.id)
   end
 
+  def destroy
+    review = Review.find(params[:id])
+    review.destroy if review.user_id == current_user.id
+    end
+  end
+
   private
   #Use callbacks to share common setuo or constraints between actions.
     def set_review

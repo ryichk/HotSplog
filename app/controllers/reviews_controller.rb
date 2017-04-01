@@ -31,14 +31,16 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+    @comments = @review.comments.includes(:user)
   end
 
   private
-    def review_params
-      params.permit(:rate, :image, :review)
-    end
-    def move_to_index
-      redirect_to action: :index unless user_signed_in?
-    end
+  def review_params
+    params.permit(:rate, :image, :review)
   end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
+
 end

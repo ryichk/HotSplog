@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :move_to_index, except: :index
 
   def index
-    @reviews = Review.page(params[:page]).per(10).order("created_at DESC")
+    @reviews = Review.includes(:user).page(params[:page]).per(10).order("created_at DESC")
   end
 
   def new

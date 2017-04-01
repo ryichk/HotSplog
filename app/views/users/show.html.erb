@@ -3,7 +3,6 @@
   <% @reviews.each do |review| %>
     <div class="content_post" style="background-image: url(<%= review.image %>);">
       <%= simple_format(review.review) %>
-      <span class="name"><%= review.name %></span>
     </div>
   <% end %>
   <%= paginate(@reviews) %>

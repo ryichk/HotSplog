@@ -1,28 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Reviews</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Descriprion</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reviews.each do |review| %>
-    <tr>
-      <td><%= review.description %></td>
-      <td><%= image_tag review.image.url %></td>
-      <td><%= link_to 'Show', review %></td>
-      <td><%= link_to 'Edit', edit_review_path(review) %></td>
-      <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+<div class="contents row" >
+  <% @reviews.each do |review| %>
+    <div class="content_post" style="background-image: url(<%= review.image %>);">
+      <%= simple_format(review.text) %>
+      <span class="name">
+        <a href="">
+          <span>投稿者</span><%= review.user.nickname %>
+        </a>
+      </span>
+    </div>
   <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Review', new_review_path %>
+  <%= paginate(@reviews) %>
+</div>

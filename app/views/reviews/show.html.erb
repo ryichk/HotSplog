@@ -20,4 +20,12 @@
       </a>
     </span>
   </div>
+  <div class="container">
+    <% if current_user %>
+      <%= form_tag("/reviews/#{@review.id}/comments", method: :post) do %>
+        <texrarea cols="30" name="text" placeholder="コメントする〜" rows="2"></texrarea>
+        <input type="submit" value="SENT">
+      <% end %>
+    <% end %>
+  </div>
 </div>

@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :items
+  get 'hotsprings' => 'hotsprings#index'
+  get 'hotsprings/new' => 'hotsprings#new'
+  get 'reviews/new' => 'reviews#new'
+  post 'reviews' => 'reviews#create'
+  get 'users/:id' => 'users#show'
+  
+  resources :hotsprings
+  root to: "hotsprings#index"
+  devise_for :users
   resources :hotsprings, only: :index
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

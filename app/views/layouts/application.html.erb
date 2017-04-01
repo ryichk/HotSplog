@@ -1,48 +1,102 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <title>TechReviewSite</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-
-   -->
 <!DOCTYPE html>
-<html class="pc" lang="ja" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://ogp.me/ns#">
+<html lang='ja'>
   <head>
-    <meta charset="utf-8">
-      <title>温泉レビューサイト</title>
-      <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet' type='text/css'>
-      <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-      <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-      <%= csrf_meta_tags %>
-    </meta>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Hot Splog!</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </head>
-  <body class="yj950-2">
-    <div id="wrapper">
-      <div id="yjContentsHeader">
-        <nav class="globalnav">
-          <div class="globalnav__menu">
-            <ul class="gmenu">
-              <li class="logo" style="float: left">
-                <a href="/">Hot Splog</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+  <body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Brand</a>
       </div>
 
-            <% if notice %>
-              <p class="alert alert-success"><%= notice %></p>
-            <% end %>
-            <% if alert %>
-              <p class="alert alert-danger"><%= alert %></p>
-            <% end %>
+      <!-- Collect the nav links, form, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link<span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li class="divider"></li>
+              <li><a href="#">One more seoarated link</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-            <%= yield %>
+  <header class="header">
+    <div class="header__bar row">
+      <h1 class="grid-6"><a href="/">HotSplog</a></h1>
+      <% if user_signed_in? %>
+        <div class="user_nav grid-6">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <a class="post" href="/reviews/new">投稿する！</a>
+        </div>
+      <% else %>
+        <div class="grid-6">
+          <%= link_to "ログイン   /", new_user_session_path, class: 'post' %>
+          <%= link_to "   新規登録をする", new_user_registration_path, class: 'post' %>
+        </div>
+      <% end %>
+    </div>
+  </header>
 
-</body>
+    <script type='text/javascript' c harset='utf-8'>
+      $(function(){
+        $.material.init();
+      });
+    </script>
+    <%= render partial: 'common/header' %>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-lg-12'>
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+      </div>
+      <footer class='row text-center'>
+        <p>(C) Hot Splog 2015</p>
+      </footer>
+    </div>
+  </body>
 </html>

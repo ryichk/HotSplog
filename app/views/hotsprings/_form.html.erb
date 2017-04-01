@@ -1,0 +1,25 @@
+<%= form_for(@hotspring) do |f| %>
+  <% if @hotspring.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@hotspring.errors.count, "error") %> prohibited this hotspring from being saved:</h2>
+
+      <ul>
+      <% @hotspring.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br>
+    <%= f.text_area :text %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

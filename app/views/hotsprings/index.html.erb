@@ -1,1 +1,86 @@
-p "hello"
+<p id="notice"><%= notice %></p>
+
+<h1>Hot Splog!</h1>
+
+<div class="contents row">
+  <% @hotsprings.each do |hotspring| %>
+    <div class="content_posr" style="background-image: url(<%= hotspring.image %>);">
+      <%= simple_format(hotspring.text) %><span class="name"><%= hotspring.name %></span>
+    </div>
+  <% end %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <form name="frmSearch" method="GET" action="http://jws.jalan.net/APILite/HotelSearch/V1/" target="_blank">
+  <input type="hidden" name="key" value="vir15b23532ca9">
+  <input type="hidden" name="pref" value="130000">
+  <input type="hidden" name="l_area" value="137100">
+  <input type="hidden" name="s_area" value="137102">
+  <div id="yado_type">
+    <label for="sel_h_type">宿タイプ：</label><select id="sel_h_type" name="h_type">
+      <option value="0" selected>指定しない</option>
+      <option value="1">旅館</option>
+      <option value="2">ペンション・民宿</option>
+      <option value="3">貸別荘・コンドミニアム</option>
+      <option value="4">ホテル・ビジネスホテル</option>
+    </select>
+  </div>
+  <table>
+    <tr><th colspan="3">こだわり条件</th></tr>
+    <tr>
+      <td><input type="checkbox" name="o_pool" id="ck_o_pool" value="1"><label for="ck_o_pool">屋外プール</label></td>
+      <td><input type="checkbox" name="parking" id="ck_parking" value="1"><label for="ck_parking">駐車場無料</label></td>
+      <td><input type="checkbox" name="pub_bath" id="ck_pub_bath" value="1"><label for="ck_pub_bath">内湯・大浴場</label></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="onsen" id="ck_onsen" value="1"><label for="ck_onsen">温泉</label></td>
+      <td><input type="checkbox" name="prv_bath" id="ck_prv_bath" value="1"><label for="ck_prv_bath">貸切風呂</label></td>
+      <td><input type="checkbox" name="v_bath" id="ck_v_bath" value="1"><label for="ck_v_bath">展望風呂</label></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="sauna" id="ck_sauna" value="1"><label for="ck_sauna">サウナ</label></td>
+      <td><input type="checkbox" name="jacz" id="ck_jacz" value="1"><label for="ck_jacz">ジャグジー</label></td>
+      <td><input type="checkbox" name="mssg" id="ck_mssg" value="1"><label for="ck_mssg">マッサージ</label></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="r_ski" id="ck_r_ski" value="1"><label for="ck_r_ski">貸しスキー</label></td>
+      <td><input type="checkbox" name="r_brd" id="ck_r_brd" value="1"><label for="ck_r_brd">貸しボード</label></td>
+      <td><input type="checkbox" name="pet" id="ck_pet" value="1"><label for="ck_pet">ペットOKの宿</label></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="esthe" id="ck_esthe" value="1"><label for="ck_esthe">エステ設備</label></td>
+      <td><input type="checkbox" name="p_pong" id="ck_p_pong" value="1"><label for="ck_p_pong">卓球あり</label></td>
+      <td><input type="checkbox" name="limo" id="ck_limo" value="1"><label for="ck_limo">送迎あり</label></td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <input type="checkbox" name="late_out" id="ck_late_out" value="1"><label for="ck_late_out">チェックアウト11時以降</label>
+      </td>
+    </tr>
+  </table>
+  <input type="submit" value="　検　索　">
+</form>
+      <th>Text</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hotsprings.each do |hotspring| %>
+      <tr>
+        <td><%= hotspring.title %></td>
+        <td><%= hotspring.text %></td>
+        <td><%= link_to 'Show', hotspring %></td>
+        <td><%= link_to 'Edit', edit_hotspring_path(hotspring) %></td>
+        <td><%= link_to 'Destroy', hotspring, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hotspring', new_hotspring_path %>

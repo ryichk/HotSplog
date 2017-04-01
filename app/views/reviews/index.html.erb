@@ -5,6 +5,10 @@
         <div class="more">
           <span><%= image_tag 'arrow_top.png' %></span>
           <ul class="more_list">
+          <li>
+            <%= link_to '詳細', "/reviews/#{review.id}", method: :get %>
+          </li>
+          <% if user_signed_in? && current_user.id == review.user_id %>
             <li>
               <%= link_to '編集', "/reviews/#{review.id}/edit", method: :get %>
             <li>

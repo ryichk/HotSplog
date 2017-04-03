@@ -51,5 +51,8 @@ group :development do
   gem 'twitter-bootstrap-rails'
   gem 'bootstrap-material-design', '0.1.4'
   gem 'carrierwave'
+  gem 'fog'
+  gem 'grape'
+  gem 'grape-jbuilder'
 end
 
